@@ -7,7 +7,10 @@ const isALoginPage = () => {
   const passwordField = document.querySelector<HTMLFormElement>(
     'form[type*="password"]'
   );
-  return !!loginForm && !!passwordField;
+  const signOrLoginUrl =
+    window.location.href.toLowerCase().includes("signin") ||
+    window.location.href.toLowerCase().includes("login");
+  return !!loginForm || !!passwordField || !!signOrLoginUrl;
 };
 
 const getVisitedUrl = () => {
@@ -16,8 +19,12 @@ const getVisitedUrl = () => {
 
 if (!isALoginPage()) {
   const currentUrl: string = getVisitedUrl();
-  console.log(currentUrl);
-  runtime.sendMessage({ type: "logUrl", url: currentUrl });
+  if (
+    currentUrl !==
+    "chrome-extension://mjiolbnjlbfeadfiebfhnabjkhmadkml/index.html"
+  ) {
+    runtime.sendMessage({ type: "logUrl", url: currentUrl });
+  }
 } else {
   console.log("This is a login page");
 }

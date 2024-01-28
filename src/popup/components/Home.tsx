@@ -4,11 +4,12 @@ import "./Home.css";
 
 const Home = () => {
   const [user, setUser] = useState(null);
-  console.log("User", user);
 
   const fetchCurrentUser = async () => {
     // This will send a req to the frontend, which proxies over to the backend, and that way I can share the user between frontend and ext
     let response = await getCurrentUser();
+    let googleId = response.googleid;
+    chrome.runtime.sendMessage({ type: "authUser", googleId });
     setUser(response);
   };
 
