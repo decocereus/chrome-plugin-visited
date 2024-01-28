@@ -29,7 +29,7 @@ npm run build
 
 # This will transpile TypeScript and bundle React components.
 
-#Load the Extension in Chrome
+# Load the Extension in Chrome
 
     -Open Google Chrome and go to chrome://extensions/.
     -Enable "Developer mode" using the toggle switch.
