@@ -19,7 +19,7 @@ const Home = () => {
 
   const handleLogin = () => {
     chrome.tabs.create({
-      url: "http://localhost:3000/auth/google",
+      url: "https://visited-client.vercel.app/auth/google",
       selected: true,
       active: true,
     });

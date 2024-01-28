@@ -3,7 +3,9 @@ import { VisitedUrl } from "../lib/definitions";
 
 export const getCurrentUser = async () => {
   try {
-    let response = await axios.get("http://localhost:3000/auth/getCurrentUser");
+    let response = await axios.get(
+      "https://visited-client.vercel.app/auth/getCurrentUser"
+    );
     return response.data;
   } catch (err) {
     console.error(err);
@@ -12,7 +14,9 @@ export const getCurrentUser = async () => {
 
 export const logoutCurrentUser = async () => {
   try {
-    let response = await axios.get("http://localhost:3000/auth/logout");
+    let response = await axios.get(
+      "https://visited-client.vercel.app/auth/logout"
+    );
     return true;
   } catch (err) {
     console.error(err);
@@ -24,7 +28,7 @@ export const sendVisitedUrl = async ({ visitedUrl, googleId }: VisitedUrl) => {
   try {
     // Had to use fetch, there was an adapter issue with axios.
     const response = await fetch(
-      "http://localhost:4500/api/v1/database/addVisitedURL",
+      "https://visited-server-backend.onrender.com/api/v1/database/addVisitedURL",
       {
         method: "POST",
         headers: {
