@@ -1,12 +1,42 @@
-# Visted
-- A simple chrome extension which allows the user to track the pages they visied.
+# Chrome Extension with TypeScript and React
 
-# This is not a published extension, to run it follow the instructions below. 
+This is a simple Chrome extension built with TypeScript and React.
 
-# Clone the github repository with git clone <repo-link>
-# Navigate to project directory and in your terminal type npm install / yarn add
-# Run npm run build, this should create a build folder, you are good to go. 
+## Clone the Repository
 
-# Go in your chrome browser on the extensions page. Check dev mode. Select load unpacked and select the build folder from this project. 
+To get started, clone the repository using the following command:
 
-# Enjoy! 
+```bash
+git clone https://github.com/decocereus/chrome-plugin-visited.git
+```
+
+# Install Dependencies
+
+Navigate to the project directory and install the dependencies:
+
+```bash
+cd chrome-extension
+npm install
+```
+
+# Build the Extension
+
+Build the extension using the following command:
+
+```bash
+npm run build
+```
+
+# This will transpile TypeScript and bundle React components.
+
+#Load the Extension in Chrome
+
+    -Open Google Chrome and go to chrome://extensions/.
+    -Enable "Developer mode" using the toggle switch.
+    -Click on "Load unpacked" and select the build folder within your cloned repository.
+
+# Explore the Extension
+
+# Once loaded, you can explore the extension in Chrome. Click on the extension icon to open the popup and interact with the React components.
+
+# Credits Amartya Singh.
