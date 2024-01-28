@@ -9,6 +9,7 @@ const handleVisitedUrl = async (visitedUrl: string) => {
     visitedUrl: visitedUrl,
     googleId: CURRENT_USER_ID,
   });
+  console.log(response);
 };
 
 runtime.onInstalled.addListener(() => {
@@ -29,7 +30,6 @@ runtime.onMessage.addListener(
 runtime.onMessage.addListener((message: AuthUser, sender, sendResponse) => {
   if (message.type === "authUser") {
     CURRENT_USER_ID = message.googleId;
-    console.log("Received user data in background script:", CURRENT_USER_ID);
   }
 });
 

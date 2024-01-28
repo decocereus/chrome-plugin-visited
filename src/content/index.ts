@@ -1,9 +1,7 @@
 import { runtime } from "webextension-polyfill";
 
 const isALoginPage = () => {
-  const loginForm = document.querySelector<HTMLFormElement>(
-    'form[action*="login"]'
-  );
+  const loginForm = document.querySelector<HTMLFormElement>(".login-form");
   const passwordField = document.querySelector<HTMLFormElement>(
     'form[type*="password"]'
   );
@@ -19,10 +17,8 @@ const getVisitedUrl = () => {
 
 if (!isALoginPage()) {
   const currentUrl: string = getVisitedUrl();
-  if (
-    currentUrl !==
-    "chrome-extension://mjiolbnjlbfeadfiebfhnabjkhmadkml/index.html"
-  ) {
+  const extensionBaseUrl = chrome.runtime.getURL("");
+  if (currentUrl !== extensionBaseUrl) {
     runtime.sendMessage({ type: "logUrl", url: currentUrl });
   }
 } else {

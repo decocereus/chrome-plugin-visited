@@ -4,7 +4,7 @@ import { VisitedUrl } from "../lib/definitions";
 export const getCurrentUser = async () => {
   try {
     let response = await axios.get(
-      "https://visited-client.vercel.app/auth/getCurrentUser"
+      "https://visited-server-backend.onrender.com/api/v1/auth/getCurrentUser"
     );
     return response.data;
   } catch (err) {
@@ -15,7 +15,7 @@ export const getCurrentUser = async () => {
 export const logoutCurrentUser = async () => {
   try {
     let response = await axios.get(
-      "https://visited-client.vercel.app/auth/logout"
+      "https://visited-server-backend.onrender.com/api/v1/auth/logout"
     );
     return true;
   } catch (err) {

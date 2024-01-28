@@ -1,12 +1,14 @@
-import React, { useState, useEffect } from "react";
-import { getCurrentUser, logoutCurrentUser } from "../utils/apiCalls";
+import { useState, useEffect } from "react";
+import { logoutCurrentUser, getCurrentUser } from "../utils/apiCalls";
 import "./Home.css";
 
 const Home = () => {
   const [user, setUser] = useState(null);
 
-  const fetchCurrentUser = async () => {
-    // This will send a req to the frontend, which proxies over to the backend, and that way I can share the user between frontend and ext
+  const fetchCurrentUserGoogleId = async () => {
+    /**
+     * Getting a creds which were stored when auth was initiated from the frontend and storing it in localstorage.
+     */
     let response = await getCurrentUser();
     let googleId = response.googleid;
     chrome.runtime.sendMessage({ type: "authUser", googleId });
@@ -14,18 +16,19 @@ const Home = () => {
   };
 
   useEffect(() => {
-    fetchCurrentUser();
+    fetchCurrentUserGoogleId();
   }, []);
 
   const handleLogin = () => {
     chrome.tabs.create({
-      url: "https://visited-client.vercel.app/auth/google",
+      url: "https://visited-server-backend.onrender.com/api/v1/auth/google",
       selected: true,
       active: true,
     });
   };
 
   const handleLogout = async () => {
+    setUser(null);
     let isLoggedOut = await logoutCurrentUser();
     if (isLoggedOut) window.location.reload();
     else alert("Logout unsuccessful");
